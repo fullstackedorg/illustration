@@ -35,6 +35,7 @@ const renderer = new THREE.WebGLRenderer({
     alpha: true
 });
 renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFShadowMap;
 renderer.setSize(CONFIG.width, CONFIG.height);
 renderer.setAnimationLoop(animate)
 document.body.appendChild(renderer.domElement);
@@ -50,7 +51,7 @@ setup();
 controls();
 snapshot();
 
-loadFBX("https://files.fullstacked.org/models/Rocket.fbx");
+// loadFBX("https://files.fullstacked.org/models/Rocket.fbx");
 loadGLTF("https://files.fullstacked.org/models/go_gopher.zip");
 
 function animate(){
