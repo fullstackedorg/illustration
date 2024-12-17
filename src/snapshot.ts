@@ -21,6 +21,6 @@ export default function () {
                 "image/png",
                 1,
             );
-        }, 10);
+        }, 100);
     });
 }
