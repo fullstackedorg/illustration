@@ -4,6 +4,7 @@ import Stats from "three/examples/jsm/libs/stats.module.js";
 import setup from "./src/setup";
 import controls from "./src/controls";
 import { loadFBX } from "./loaders/fbx";
+import snapshot from "./src/snapshot";
 
 export const CONFIG = {
     height: window.innerHeight,
@@ -31,6 +32,7 @@ scene.background = new THREE.Color(CONFIG.backgroundColor);
 const renderer = new THREE.WebGLRenderer({ 
     antialias: true,
     preserveDrawingBuffer: true,
+    alpha: true
 });
 renderer.shadowMap.enabled = true;
 renderer.setSize(CONFIG.width, CONFIG.height);
@@ -46,6 +48,7 @@ document.body.appendChild(stats.dom);
 
 setup();
 controls();
+snapshot();
 
 loadFBX("https://files.fullstacked.org/models/Rocket.fbx");
 loadGLTF("https://files.fullstacked.org/models/go_gopher.zip");
