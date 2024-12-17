@@ -12,4 +12,5 @@ export default function () {
 
 function exportScene() {
     console.log(CONFIG.models)
+    console.log(CONFIG.camera)
 }

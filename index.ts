@@ -19,7 +19,7 @@ export const CONFIG = {
 };
 
 const camera = new THREE.PerspectiveCamera(
-    70,
+    50,
     CONFIG.width / CONFIG.height,
     0.01,
     10,
