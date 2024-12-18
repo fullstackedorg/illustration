@@ -5,7 +5,7 @@ import setup from "./src/setup";
 import controls from "./src/controls";
 import { loadFBX } from "./loaders/fbx";
 import snapshot from "./src/snapshot";
-import exportLoad from "./src/export-load";
+import exportScene from "./src/exportScene";
 
 export const CONFIG = {
     height: window.innerHeight,
@@ -51,7 +51,7 @@ document.body.appendChild(stats.dom);
 setup();
 controls();
 snapshot();
-exportLoad();
+exportScene();
 
 // loadFBX("https://files.fullstacked.org/models/Rocket.fbx");
 loadGLTF("https://files.fullstacked.org/models/go_gopher.zip");

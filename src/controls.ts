@@ -4,6 +4,7 @@ import { TransformControls } from "three/examples/jsm/controls/TransformControls
 import { CONFIG } from "..";
 
 const raycaster = new THREE.Raycaster();
+let currentModel: THREE.Object3D;
 
 export default () => {
     const orbit = new OrbitControls(CONFIG.camera, CONFIG.renderer.domElement);
@@ -18,13 +19,25 @@ export default () => {
         editing = true;
         orbit.enabled = !event.value;
     });
+    control.addEventListener("objectChange", () => {
+        if (control.getMode() === "scale") {
+            const { x, y, z } = currentModel.scale;
+            if (x === y) {
+                currentModel.scale.set(z, z, z);
+            } else if (x === z) {
+                currentModel.scale.set(y, y, y);
+            } else {
+                currentModel.scale.set(x, x, x);
+            }
+        }
+    });
     const gizmo = control.getHelper();
     CONFIG.scene.add(gizmo);
 
     CONFIG.renderer.domElement.addEventListener("mouseup", (e) => {
         e.preventDefault();
 
-        if(editing) {
+        if (editing) {
             editing = false;
             return;
         }
@@ -41,8 +54,10 @@ export default () => {
         if (intersects.length > 0) {
             const model = getRootModel(intersects.at(0).object);
             control.attach(model);
+            currentModel = model;
         } else {
             control.detach();
+            currentModel = null;
         }
     });
 
@@ -51,19 +66,15 @@ export default () => {
             case "w":
                 control.setMode("translate");
                 break;
-
             case "e":
                 control.setMode("rotate");
                 break;
-
             case "r":
                 control.setMode("scale");
                 break;
-                
             case " ":
                 control.enabled = !control.enabled;
                 break;
-
             case "Escape":
                 control.reset();
                 break;
