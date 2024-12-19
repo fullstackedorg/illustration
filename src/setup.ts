@@ -2,7 +2,7 @@ import * as THREE from "three";
 import { CONFIG } from "..";
 
 export default () => {
-    const light = new THREE.HemisphereLight(0xffffff, 0xffffff, 1);
+    const light = new THREE.HemisphereLight(0xffffff, 0xffffff, 1.5);
     CONFIG.scene.add(light);
 
     const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
