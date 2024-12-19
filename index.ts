@@ -12,6 +12,8 @@ export const CONFIG = {
     width: window.innerWidth,
     backgroundColor: "#FFFFFF",
 
+    modelsURL: "https://files.fullstacked.org/models",
+
     renderer: null as THREE.Renderer,
     scene: null as THREE.Scene,
     camera: null as THREE.Camera,
@@ -53,17 +55,17 @@ controls();
 snapshot();
 exportScene();
 
-loadFBX("https://files.fullstacked.org/models/rocket.fbx");
-loadFBX("https://files.fullstacked.org/models/android.fbx");
-loadFBX("https://files.fullstacked.org/models/apple.fbx");
-loadFBX("https://files.fullstacked.org/models/docker.fbx");
-loadFBX("https://files.fullstacked.org/models/git.fbx");
-loadFBX("https://files.fullstacked.org/models/javascript.fbx");
-loadFBX("https://files.fullstacked.org/models/microsoft.fbx");
-loadFBX("https://files.fullstacked.org/models/npm.fbx");
-loadFBX("https://files.fullstacked.org/models/typescript.fbx");
-loadFBX("https://files.fullstacked.org/models/webassembly.fbx");
-loadGLTF("https://files.fullstacked.org/models/go_gopher.zip");
+loadFBX("rocket.fbx");
+loadFBX("android.fbx");
+loadFBX("apple.fbx");
+loadFBX("docker.fbx");
+loadFBX("git.fbx");
+loadFBX("javascript.fbx");
+loadFBX("microsoft.fbx");
+loadFBX("npm.fbx");
+loadFBX("typescript.fbx");
+loadFBX("webassembly.fbx");
+loadGLTF("go_gopher.zip");
 
 function animate(){
     stats.update();

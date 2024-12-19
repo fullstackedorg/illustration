@@ -1,4 +1,7 @@
 import * as THREE from "three";
+import { CONFIG } from "..";
+import core_fetch from "fetch";
+import fs from "fs";
 
 export function resizeAndCenterModel(model: THREE.Object3D) {
     var helper = new THREE.BoxHelper(model, 0xff0000);
@@ -30,4 +33,19 @@ export function initShadowOnModel(model: THREE.Object3D) {
     model.traverse((o) => {
         o.castShadow = true;
     });
+}
+
+export async function loadDataFromLocalOrRemote(filename: string) {
+    const localURL = `data/${filename}`;
+    const remoteURL = `${CONFIG.modelsURL}/${filename}`;
+    let data: Uint8Array;
+    if(!await fs.exists(localURL)) {
+        data = (await core_fetch(remoteURL)).body;
+        await fs.mkdir("data");
+        await fs.writeFile(localURL, data)
+    } else {
+        data = await fs.readFile(localURL);
+    }
+
+    return data;
 }
