@@ -2,7 +2,11 @@ import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { CONFIG } from "..";
 import JSZip from "jszip";
-import { initShadowOnModel, loadDataFromLocalOrRemote, resizeAndCenterModel } from "./utils";
+import {
+    initShadowOnModel,
+    loadDataFromLocalOrRemote,
+    resizeAndCenterModel,
+} from "./utils";
 
 const manager = new THREE.LoadingManager();
 const loader = new GLTFLoader(manager);
@@ -19,24 +23,22 @@ export async function loadGLTF(filename: string) {
             if (url.endsWith("scene.bin")) return URL.createObjectURL(bin);
             return url;
         });
-        url = URL.createObjectURL(
-            await zip.file("scene.gltf").async("blob"),
-        );
+        url = URL.createObjectURL(await zip.file("scene.gltf").async("blob"));
     } else {
         url = URL.createObjectURL(new Blob([data]));
     }
 
-    loader.load(
-        url,
-        function (gltf) {
+    return new Promise<void>((res) => {
+        loader.load(url, function (gltf) {
             const model = gltf.scene;
             CONFIG.scene.add(model);
             initShadowOnModel(model);
             resizeAndCenterModel(model);
             CONFIG.models.push({
                 id: filename,
-                model
+                model,
             });
-        }
-    );
+            res();
+        });
+    });
 }

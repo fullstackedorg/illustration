@@ -21,6 +21,41 @@ type SceneData = {
     }[];
 };
 
+export async function load(file: string) {
+    if (!(await fs.exists(file))) {
+        return;
+    }
+
+    const data: SceneData = JSON.parse(
+        await fs.readFile(file, { encoding: "utf8" }),
+    );
+
+    CONFIG.camera.position.set(
+        data.camera.position.x,
+        data.camera.position.y,
+        data.camera.position.z,
+    );
+    CONFIG.camera.rotation.set(
+        data.camera.rotation.x,
+        data.camera.rotation.y,
+        data.camera.rotation.z,
+    );
+    CONFIG.orbitControls.target.set(
+        data.target.x,
+        data.target.y,
+        data.target.z,
+    );
+    CONFIG.orbitControls.update();
+
+    data.models.forEach((m) => {
+        const model = CONFIG.models.find(({ id }) => id === m.id);
+        if (!model) return;
+        model.model.position.set(m.position.x, m.position.y, m.position.z);
+        model.model.rotation.set(m.rotation.x, m.rotation.y, m.rotation.z);
+        model.model.scale.set(m.scale.x, m.scale.y, m.scale.z);
+    });
+}
+
 export default function () {
     const file = "data/scene.json";
     window.addEventListener("keydown", async function (event) {
@@ -57,37 +92,6 @@ export default function () {
     window.addEventListener("keydown", async function (event) {
         if (event.key !== "l") return;
 
-        if (!(await fs.exists(file))) {
-            return;
-        }
-
-        const data: SceneData = JSON.parse(
-            await fs.readFile(file, { encoding: "utf8" }),
-        );
-
-        CONFIG.camera.position.set(
-            data.camera.position.x,
-            data.camera.position.y,
-            data.camera.position.z,
-        );
-        CONFIG.camera.rotation.set(
-            data.camera.rotation.x,
-            data.camera.rotation.y,
-            data.camera.rotation.z,
-        );
-        CONFIG.orbitControls.target.set(
-            data.target.x,
-            data.target.y,
-            data.target.z,
-        );
-        CONFIG.orbitControls.update();
-
-        data.models.forEach((m) => {
-            const model = CONFIG.models.find(({ id }) => id === m.id);
-            if (!model) return;
-            model.model.position.set(m.position.x, m.position.y, m.position.z);
-            model.model.rotation.set(m.rotation.x, m.rotation.y, m.rotation.z);
-            model.model.scale.set(m.scale.x, m.scale.y, m.scale.z);
-        });
+        load(file);
     });
 }

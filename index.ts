@@ -5,9 +5,8 @@ import setup from "./src/setup";
 import controls from "./src/controls";
 import { loadFBX } from "./loaders/fbx";
 import snapshot from "./src/snapshot";
-import exportScene from "./src/exportScene";
+import exportScene, { load } from "./src/exportScene";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
-
 
 export const CONFIG = {
     height: window.innerHeight,
@@ -21,16 +20,16 @@ export const CONFIG = {
     camera: null as THREE.Camera,
     orbitControls: null as OrbitControls,
     models: [] as {
-        id: string,
-        model: THREE.Object3D
-    }[]
+        id: string;
+        model: THREE.Object3D;
+    }[],
 };
 
 const camera = new THREE.PerspectiveCamera(
     50,
     CONFIG.width / CONFIG.height,
     0.01,
-    10,
+    100,
 );
 camera.position.z = 1;
 camera.position.y = 1;
@@ -38,15 +37,15 @@ camera.position.y = 1;
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(CONFIG.backgroundColor);
 
-const renderer = new THREE.WebGLRenderer({ 
+const renderer = new THREE.WebGLRenderer({
     antialias: true,
     preserveDrawingBuffer: true,
-    alpha: true
+    alpha: true,
 });
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFShadowMap;
 renderer.setSize(CONFIG.width, CONFIG.height);
-renderer.setAnimationLoop(animate)
+renderer.setAnimationLoop(animate);
 document.body.appendChild(renderer.domElement);
 
 const orbit = new OrbitControls(camera, renderer.domElement);
@@ -65,19 +64,23 @@ controls();
 snapshot();
 exportScene();
 
-loadFBX("rocket.fbx");
-loadFBX("android.fbx");
-loadFBX("apple.fbx");
-loadFBX("docker.fbx");
-loadFBX("git.fbx");
-loadFBX("javascript.fbx");
-loadFBX("microsoft.fbx");
-loadFBX("npm.fbx");
-loadFBX("typescript.fbx");
-loadFBX("webassembly.fbx");
-loadGLTF("go_gopher.zip");
+Promise.all([
+    loadFBX("rocket.fbx"),
+    loadFBX("android.fbx"),
+    loadFBX("apple.fbx"),
+    loadFBX("docker.fbx"),
+    loadFBX("git.fbx"),
+    loadFBX("javascript.fbx"),
+    loadFBX("microsoft.fbx"),
+    loadFBX("npm.fbx"),
+    loadFBX("typescript.fbx"),
+    loadFBX("webassembly.fbx"),
+    loadFBX("editor.fbx"),
+    loadFBX("project.fbx"),
+    loadGLTF("go_gopher.zip"),
+]).then(() => load("defaultScene.json"));
 
-function animate(){
+function animate() {
     stats.update();
     renderer.render(scene, camera);
 }
