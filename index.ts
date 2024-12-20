@@ -6,6 +6,8 @@ import controls from "./src/controls";
 import { loadFBX } from "./loaders/fbx";
 import snapshot from "./src/snapshot";
 import exportScene from "./src/exportScene";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+
 
 export const CONFIG = {
     height: window.innerHeight,
@@ -17,7 +19,11 @@ export const CONFIG = {
     renderer: null as THREE.Renderer,
     scene: null as THREE.Scene,
     camera: null as THREE.Camera,
-    models: [] as THREE.Object3D[]
+    orbitControls: null as OrbitControls,
+    models: [] as {
+        id: string,
+        model: THREE.Object3D
+    }[]
 };
 
 const camera = new THREE.PerspectiveCamera(
@@ -43,9 +49,13 @@ renderer.setSize(CONFIG.width, CONFIG.height);
 renderer.setAnimationLoop(animate)
 document.body.appendChild(renderer.domElement);
 
+const orbit = new OrbitControls(camera, renderer.domElement);
+orbit.update();
+
 CONFIG.camera = camera;
 CONFIG.scene = scene;
 CONFIG.renderer = renderer;
+CONFIG.orbitControls = orbit;
 
 const stats = new Stats();
 document.body.appendChild(stats.dom);

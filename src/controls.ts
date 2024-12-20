@@ -1,5 +1,4 @@
 import * as THREE from "three";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { TransformControls } from "three/examples/jsm/controls/TransformControls.js";
 import { CONFIG } from "..";
 
@@ -7,8 +6,6 @@ const raycaster = new THREE.Raycaster();
 let currentModel: THREE.Object3D;
 
 export default () => {
-    const orbit = new OrbitControls(CONFIG.camera, CONFIG.renderer.domElement);
-    orbit.update();
 
     const control = new TransformControls(
         CONFIG.camera,
@@ -17,7 +14,7 @@ export default () => {
     let editing = false;
     control.addEventListener("dragging-changed", function (event) {
         editing = true;
-        orbit.enabled = !event.value;
+        CONFIG.orbitControls.enabled = !event.value;
     });
     control.addEventListener("objectChange", () => {
         if (control.getMode() === "scale") {
@@ -49,7 +46,9 @@ export default () => {
 
         raycaster.setFromCamera(mouse, CONFIG.camera);
 
-        const intersects = raycaster.intersectObjects(CONFIG.models);
+        const intersects = raycaster.intersectObjects(
+            CONFIG.models.map(({ model }) => model),
+        );
 
         if (intersects.length > 0) {
             const model = getRootModel(intersects.at(0).object);

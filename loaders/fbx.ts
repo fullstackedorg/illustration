@@ -11,11 +11,13 @@ export async function loadFBX(filename: string) {
     loader.load(
         url,
         function (fbx) {
-            console.log(fbx)
             CONFIG.scene.add(fbx);
             resizeAndCenterModel(fbx);
             initShadowOnModel(fbx);
-            CONFIG.models.push(fbx);            
+            CONFIG.models.push({
+                id: filename,
+                model: fbx
+            });
         },
     )
 }

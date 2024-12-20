@@ -33,7 +33,10 @@ export async function loadGLTF(filename: string) {
             CONFIG.scene.add(model);
             initShadowOnModel(model);
             resizeAndCenterModel(model);
-            CONFIG.models.push(model);
+            CONFIG.models.push({
+                id: filename,
+                model
+            });
         }
     );
 }
