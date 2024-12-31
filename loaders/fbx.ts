@@ -1,10 +1,10 @@
 import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader.js";
-import { CONFIG } from "..";
 import {
     initShadowOnModel,
     loadDataFromLocalOrRemote,
     resizeAndCenterModel,
 } from "./utils";
+import { CONFIG } from "../src/config";
 
 const loader = new FBXLoader();
 

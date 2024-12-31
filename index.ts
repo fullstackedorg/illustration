@@ -7,23 +7,7 @@ import { loadFBX } from "./loaders/fbx";
 import snapshot from "./src/snapshot";
 import exportScene, { load } from "./src/exportScene";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
-
-export const CONFIG = {
-    height: window.innerHeight,
-    width: window.innerWidth,
-    backgroundColor: "#FFFFFF",
-
-    modelsURL: "https://files.fullstacked.org/models",
-
-    renderer: null as THREE.Renderer,
-    scene: null as THREE.Scene,
-    camera: null as THREE.Camera,
-    orbitControls: null as OrbitControls,
-    models: [] as {
-        id: string;
-        model: THREE.Object3D;
-    }[],
-};
+import { CONFIG } from "./src/config";
 
 const camera = new THREE.PerspectiveCamera(
     50,

@@ -1,5 +1,5 @@
 import fs from "fs";
-import { CONFIG } from "..";
+import { CONFIG } from "./config";
 
 type Vector3 = {
     x: number;

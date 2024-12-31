@@ -1,12 +1,12 @@
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
-import { CONFIG } from "..";
 import JSZip from "jszip";
 import {
     initShadowOnModel,
     loadDataFromLocalOrRemote,
     resizeAndCenterModel,
 } from "./utils";
+import { CONFIG } from "../src/config";
 
 const manager = new THREE.LoadingManager();
 const loader = new GLTFLoader(manager);

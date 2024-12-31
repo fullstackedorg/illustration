@@ -1,7 +1,7 @@
 import * as THREE from "three";
-import { CONFIG } from "..";
 import core_fetch from "fetch";
 import fs from "fs";
+import { CONFIG } from "../src/config";
 
 export function resizeAndCenterModel(model: THREE.Object3D) {
     var helper = new THREE.BoxHelper(model, 0xff0000);

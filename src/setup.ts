@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { CONFIG } from "..";
+import { CONFIG } from "./config";
 
 export default () => {
     const light = new THREE.HemisphereLight(0xffffff, 0xffffff, 1.5);

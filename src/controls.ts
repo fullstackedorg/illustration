@@ -1,6 +1,6 @@
 import * as THREE from "three";
 import { TransformControls } from "three/examples/jsm/controls/TransformControls.js";
-import { CONFIG } from "..";
+import { CONFIG } from "./config";
 
 const raycaster = new THREE.Raycaster();
 let currentModel: THREE.Object3D;
