@@ -1,0 +1,7 @@
+{
+    "id": "org.fullstacked.threejs-illustration",
+    "title": "FullStacked ThreeJS Illustration",
+    "git": {
+        "repo": "https://github.com/fullstackedorg/threejs-illustration.git"
+    }
+}
