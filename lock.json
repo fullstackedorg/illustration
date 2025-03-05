@@ -51,70 +51,10 @@
             ]
         },
         {
-            "name": "core-util-is",
-            "version": "1.0.3",
-            "as": [
-                "~1.0.0"
-            ],
-            "location": [
-                "node_modules"
-            ]
-        },
-        {
             "name": "fflate",
             "version": "0.8.2",
             "as": [
                 "~0.8.2"
-            ],
-            "location": [
-                "node_modules"
-            ]
-        },
-        {
-            "name": "immediate",
-            "version": "3.0.6",
-            "as": [
-                "~3.0.5"
-            ],
-            "location": [
-                "node_modules"
-            ]
-        },
-        {
-            "name": "inherits",
-            "version": "2.0.4",
-            "as": [
-                "~2.0.3"
-            ],
-            "location": [
-                "node_modules"
-            ]
-        },
-        {
-            "name": "isarray",
-            "version": "1.0.0",
-            "as": [
-                "~1.0.0"
-            ],
-            "location": [
-                "node_modules"
-            ]
-        },
-        {
-            "name": "jszip",
-            "version": "3.10.1",
-            "as": [
-                "^3.10.1"
-            ],
-            "location": [
-                "node_modules"
-            ]
-        },
-        {
-            "name": "lie",
-            "version": "3.3.0",
-            "as": [
-                "~3.3.0"
             ],
             "location": [
                 "node_modules"
@@ -131,81 +71,10 @@
             ]
         },
         {
-            "name": "pako",
-            "version": "1.0.11",
-            "as": [
-                "~1.0.2"
-            ],
-            "location": [
-                "node_modules"
-            ]
-        },
-        {
-            "name": "process-nextick-args",
-            "version": "2.0.1",
-            "as": [
-                "~2.0.0"
-            ],
-            "location": [
-                "node_modules"
-            ]
-        },
-        {
-            "name": "readable-stream",
-            "version": "2.3.8",
-            "as": [
-                "~2.3.6"
-            ],
-            "location": [
-                "node_modules"
-            ]
-        },
-        {
-            "name": "safe-buffer",
-            "version": "5.1.2",
-            "as": [
-                "~5.1.1",
-                "~5.1.0"
-            ],
-            "location": [
-                "node_modules"
-            ]
-        },
-        {
-            "name": "setimmediate",
-            "version": "1.0.5",
-            "as": [
-                "^1.0.5"
-            ],
-            "location": [
-                "node_modules"
-            ]
-        },
-        {
-            "name": "string_decoder",
-            "version": "1.1.1",
-            "as": [
-                "~1.1.1"
-            ],
-            "location": [
-                "node_modules"
-            ]
-        },
-        {
             "name": "three",
             "version": "0.174.0",
             "as": [
                 "^0.174.0"
-            ],
-            "location": [
-                "node_modules"
-            ]
-        },
-        {
-            "name": "util-deprecate",
-            "version": "1.0.2",
-            "as": [
-                "~1.0.1"
             ],
             "location": [
                 "node_modules"
