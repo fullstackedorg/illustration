@@ -17,7 +17,7 @@ export async function loadGLTF(filename: string) {
     let url: string;
     if (filename.endsWith(".zip")) {
         const zip = await archive.unzip(data);
-        
+
         const binData = zip["scene.bin"].contents;
         const bin = new Blob([binData], { type: "application/octet-stream" });
         manager.setURLModifier((url) => {
@@ -25,8 +25,8 @@ export async function loadGLTF(filename: string) {
             return url;
         });
 
-        const gltfData= zip["scene.gltf"].contents;
-        const gltf = new Blob([gltfData], { type: "application/octet-stream" })
+        const gltfData = zip["scene.gltf"].contents;
+        const gltf = new Blob([gltfData], { type: "application/octet-stream" });
         url = URL.createObjectURL(gltf);
     } else {
         url = URL.createObjectURL(new Blob([data]));
