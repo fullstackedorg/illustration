@@ -8,6 +8,7 @@ import snapshot from "./src/snapshot";
 import exportScene, { load } from "./src/exportScene";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { CONFIG } from "./src/config";
+import { loadHDR } from "./loaders/hdr";
 
 const camera = new THREE.PerspectiveCamera(
     50,
@@ -47,12 +48,11 @@ setup();
 controls();
 snapshot();
 exportScene();
-
+await loadHDR("studio.hdr")
 Promise.all([
     loadFBX("rocket.fbx"),
     loadFBX("android.fbx"),
     loadFBX("apple.fbx"),
-    loadFBX("docker.fbx"),
     loadFBX("git.fbx"),
     loadFBX("javascript.fbx"),
     loadFBX("microsoft.fbx"),
@@ -62,6 +62,7 @@ Promise.all([
     loadFBX("editor.fbx"),
     loadFBX("project.fbx"),
     loadGLTF("go_gopher.zip"),
+    
 ]).then(() => load("defaultScene.json"));
 
 function animate() {

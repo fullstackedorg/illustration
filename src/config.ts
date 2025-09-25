@@ -8,7 +8,7 @@ export const CONFIG = {
 
     modelsURL: "https://files.fullstacked.org/models",
 
-    renderer: null as THREE.Renderer,
+    renderer: null as THREE.WebGLRenderer,
     scene: null as THREE.Scene,
     camera: null as THREE.Camera,
     orbitControls: null as OrbitControls,
