@@ -4,7 +4,7 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 export const CONFIG = {
     height: window.innerHeight,
     width: window.innerWidth,
-    backgroundColor: "#FFFFFF",
+    backgroundColor: "#1e293b",
 
     modelsURL: "https://files.fullstacked.org/models",
 

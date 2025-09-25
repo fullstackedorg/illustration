@@ -18,7 +18,7 @@ export async function loadHDR(filename: string) {
 
     // CONFIG.scene.background = hdr;
     CONFIG.scene.environment = envMap;
-    CONFIG.scene.environmentRotation.y = 45;
+    CONFIG.scene.environmentRotation.y = THREE.MathUtils.degToRad(55);
     CONFIG.scene.environmentIntensity = 0.8;
     CONFIG.renderer.toneMapping = THREE.ACESFilmicToneMapping;
 
