@@ -50,6 +50,7 @@ snapshot();
 exportScene();
 await loadHDR("studio.hdr")
 Promise.all([
+    loadFBX("linux.fbx"),
     loadFBX("rocket.fbx"),
     loadFBX("android.fbx"),
     loadFBX("apple.fbx"),

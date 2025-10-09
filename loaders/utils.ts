@@ -33,7 +33,7 @@ const createMaterial = (color: THREE.Color) =>
     new THREE.MeshStandardMaterial({
         color,
         emissive: color,
-        emissiveIntensity: 0.1,
+        emissiveIntensity: color.getHex() === 0xFFFFFF ? 0.4 : 0.1,
         metalness: 0.5,
         roughness: 0.2,
         //envMap: CONFIG.scene.environment,
